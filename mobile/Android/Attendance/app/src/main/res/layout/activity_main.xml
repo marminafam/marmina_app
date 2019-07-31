@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/text_number_of_attendees_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Number of Attendees = "/>
+    <TextView
+
+        android:id="@+id/text_number_of_attendees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="0"
+        android:layout_toEndOf="@id/text_number_of_attendees_title"
+        android:layout_toRightOf="@id/text_number_of_attendees_title" />
+
+
+    <ListView
+        android:id="@+id/list_view_attendees"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/text_number_of_attendees"
+        android:divider="@android:color/transparent"
+        android:foregroundGravity="top"
+        tools:listitem="@layout/item_attendee" />
+
+</RelativeLayout>
