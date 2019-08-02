@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_bcrypt import Bcrypt
 
-from .common.Database import db
+from .util.Database import db
 from .config import configs
 
 flask_bcrypt = Bcrypt()

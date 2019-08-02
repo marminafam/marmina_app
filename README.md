@@ -6,9 +6,9 @@
 
 #### Environment Setup
 
-Install node 10 & npm globally (depending on your OS).
-Install Angular-cli globally with npm.
-- `npm install -g @angular/cli`
+- Install node 10 & npm globally (depending on your OS).
+- Install Angular-cli globally with npm.
+  - `npm install -g @angular/cli`
 
 #### Running the Frontend Application
 

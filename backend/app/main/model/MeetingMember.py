@@ -1,4 +1,4 @@
-from ..common.Database import db
+from ..util.Database import db
 
 
 class MeetingMember(db.Model):
