@@ -5,13 +5,19 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 
 from app.main import create_app, db
-from app.main.model import User, Car, Family
+from app.main.model import User, Car, Family, Meeting, MeetingMember, MeetingServiceDay, MeetingAttendance
 
 app = create_app(os.getenv("MARMINA_ENV") or "dev")
 app.app_context().push()
 
 manager = Manager(app)
 migrate = Migrate(app, db)
+
+with app.app_context():
+    if db.engine.url.drivername == 'sqlite':
+        migrate.init_app(app, db, render_as_batch=True)
+    else:
+        migrate.init_app(app, db)
 
 manager.add_command('db', MigrateCommand)
 

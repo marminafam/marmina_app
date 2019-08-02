@@ -6,6 +6,7 @@ class Car(db.Model):
     __tablename__ = "cars"
 
     id = db.Column(db.Integer, autoincrement=True)
+
     type = db.Column(db.String(100))
     plate_number = db.Column(db.Integer, primary_key=True)
     color = db.Column(db.String(100))

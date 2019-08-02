@@ -9,7 +9,9 @@ class Family(db.Model):
 
     father = db.Column(
       db.Integer, db.ForeignKey('users.id'), nullable=False, primary_key=True)
+
     mother = db.Column(
       db.Integer, db.ForeignKey('users.id'), nullable=False, primary_key=True)
+
     child = db.Column(
       db.Integer, db.ForeignKey('users.id'), nullable=True, primary_key=True)
