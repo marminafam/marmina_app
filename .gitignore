@@ -59,3 +59,10 @@ typings/
 
 # next.js build output
 .next
+
+# pyc files
+*.pyc
+__pycache__/
+
+# local sqlite3 database
+*.db
