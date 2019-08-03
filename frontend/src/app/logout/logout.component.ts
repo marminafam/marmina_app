@@ -1,3 +1,5 @@
+import { MarminaAuthService } from './../auth.service';
+import { AuthService } from 'angularx-social-login';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,10 +14,16 @@ export class LogoutComponent implements OnInit {
   public logoutError: boolean;
 
   constructor(
+    private marminaAuthService: MarminaAuthService,
     private router: Router
   ) { }
 
   ngOnInit(): void {
+    this.marminaAuthService.logout().subscribe(() => {
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 500);
+    })
   }
 
 }

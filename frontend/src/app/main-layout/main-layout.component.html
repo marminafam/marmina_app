@@ -3,8 +3,8 @@
     <div routerLink="/" routerLinkActive="active" class="logo">
       MarMina Family
     </div>
-    <div *ngIf="isAuthenticated" class="user">
-      Maged
+    <div *ngIf="isAuthenticated && user" class="user">
+      {{ user.name }}
     </div>
     <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active" class="login">
       Login
