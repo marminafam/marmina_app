@@ -4,7 +4,8 @@
       MarMina Family
     </div>
     <div *ngIf="isAuthenticated && user" class="user">
-      {{ user.name }}
+      <span>{{ user.firstName }}</span>
+      <img [src]="user.photoUrl" alt="">
     </div>
     <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active" class="login">
       Login

@@ -7,7 +7,7 @@ import { Component, OnInit, OnChanges } from '@angular/core';
   templateUrl: './main-layout.component.html',
   styleUrls: ['./main-layout.component.scss']
 })
-export class MainLayoutComponent implements OnInit, OnChanges {
+export class MainLayoutComponent implements OnInit {
 
   public isAuthenticated: boolean = false;
   public user: SocialUser;
@@ -16,17 +16,10 @@ export class MainLayoutComponent implements OnInit, OnChanges {
     private marminaAuthService: MarminaAuthService
   ) { }
 
-  ngOnChanges() {
-    console.log("onChanges mainLayout");
-  }
-
   ngOnInit() {
-
     this.marminaAuthService.isLoggedIn().subscribe((data) => {
       this.isAuthenticated = data.isAuthenticated;
       this.user = data.user;
     });
-
   }
-
 }

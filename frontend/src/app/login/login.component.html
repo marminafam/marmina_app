@@ -1,4 +1,46 @@
+<mf-main-layout> </mf-main-layout>
 
-<mf-main-layout>
-</mf-main-layout>
-<button style="margin-left: 20em; margin-top: 10em;" class="btn btn-success" *ngIf="!token" (click)="login()">Sign In with Google</button>
+<div class="wrapper">
+  <div class="login-form">
+    <div class="social-login">
+      <h2>Sign In With</h2>
+      <a class="google-btn" (click)="loginWithGoogle()">
+        <img src="assets/google-logo.png" alt="google-logo">
+        <span>Google</span>
+      </a>
+      <h3><b>OR</b></h3>
+    </div>
+
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="loginWithPassword()">
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your username!">
+          <nz-input-group>
+            <input
+              type="text"
+              nz-input
+              formControlName="userName"
+              placeholder="Username"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control nzErrorTip="Please input your Password!">
+          <nz-input-group>
+            <input
+              type="password"
+              nz-input
+              formControlName="password"
+              placeholder="Password"/>
+          </nz-input-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-control>
+          <button nz-button class="login-form-button" [nzType]="'primary'">
+            Log in
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
