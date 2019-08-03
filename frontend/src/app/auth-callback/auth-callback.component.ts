@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { takeWhile } from 'rxjs/operators';
 
 @Component({
-  selector: 'mf-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'mf-auth-callback',
+  template: `
+  `
 })
-export class LoginComponent implements OnDestroy {
+export class AuthCallbackComponent implements OnDestroy {
 
   alive = true;
 
@@ -15,9 +15,6 @@ export class LoginComponent implements OnDestroy {
     private router: Router
   ) { }
 
-  login() {
-
-  }
 
   ngOnDestroy(): void {
     this.alive = false;

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit {
 
+  public isAuthenticated: boolean = false;
+  public username: string;
+
   constructor() { }
 
   ngOnInit() {

@@ -1,5 +1,4 @@
 @import 'reset';
-@import 'nebular';
 @import 'variables';
 
 
@@ -24,7 +23,13 @@
 .login {
   background: $light-gray;
   color: $dark-gray;
-  padding: 1em 3em;
+  padding: 0.95em 3em;
+}
+
+.logout {
+  background: #011e4a;
+  color: #fff;
+  padding: 0.95em 3em;
 }
 
 .sidebar {

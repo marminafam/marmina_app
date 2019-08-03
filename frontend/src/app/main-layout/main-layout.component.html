@@ -1,20 +1,23 @@
 <!-- Header -->
 <div class="header">
-  <div class="logo">
+    <div routerLink="/" routerLinkActive="active" class="logo">
       MarMina Family
     </div>
-    <div class="user">
+    <div *ngIf="isAuthenticated" class="user">
       Maged
     </div>
-    <div class="login">
+    <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active" class="login">
       Login
-    </div>
+    </a>
+    <a *ngIf="isAuthenticated" routerLink="/logout" routerLinkActive="active" class="logout">
+      Logout
+    </a>
 </div>
 
 <!-- Sidebar -->
 <div class="sidebar">
   <ul>
-    <li class="active">Item1</li>
+    <li class="active">Profile</li>
     <li>Item2</li>
     <li>Item3</li>
   </ul>
