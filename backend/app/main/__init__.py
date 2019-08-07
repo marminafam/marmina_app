@@ -5,7 +5,7 @@ from flask_restplus import Api
 from .util.Database import db
 from .config import configs
 
-from app.main.controller.UserController import UserList
+from app.main.controller.UserController import UserList, User, UserFormFields
 
 flask_bcrypt = Bcrypt()
 
@@ -16,6 +16,8 @@ def create_app(config_name):
 
     api = Api()
     api.add_resource(UserList, '/users')
+    api.add_resource(User, '/users/<email>')
+    api.add_resource(UserFormFields, '/users/fields')
 
     db.init_app(app)
     api.init_app(app)
