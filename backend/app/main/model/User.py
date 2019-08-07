@@ -6,7 +6,7 @@ class User(db.Model):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-
+    public_id = db.Column(db.String(500))
     name = db.Column(db.String(100))
     english_name = db.Column(db.String(100))
     mobile = db.Column(db.Integer)
@@ -24,5 +24,6 @@ class User(db.Model):
     is_system_admin = db.Column(db.Boolean)
     is_family_admin = db.Column(db.Boolean)
     is_verified = db.Column(db.Boolean)
+    registered_on = db.Column(db.DateTime)
     car_id = db.ForeignKey("cars.id")
     family_id = db.ForeignKey("families.id")

@@ -27,16 +27,21 @@ Server should be running @ http://localhost:4200.
 - Install the application requirements.
   - `pip3 install -r requirements.txt`
 
-#### Migrating the Database
+#### Creating a New Database Instance
 
 Use "init" step to create the local sqlite database first, and then use the migrate & upgrade commands to apply any new model changes.
 
-- python3 manage.py db init
-- python3 manage,py db migrate --message "My awesome db change"
-- python3 manage.py db upgrade
+- `python3 manage.py db init`
+
+#### Migrating the Database Changes
+
+Use `migrate` then `upgrade` for your new changes in database model to take effect in the local sqlite database.
+
+- `python3 manage.py db migrate --message "My awesome db change"`
+- `python3 manage.py db upgrade`
 
 #### Running the Application
 
-- python3 manage.py run
+- `python3 manage.py run`
 
 The backend application will be running on http://localhost:5000.
