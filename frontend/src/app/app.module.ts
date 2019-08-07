@@ -25,7 +25,7 @@ import {
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
-import { UserRegistrationComponent } from './user-registration/user-registration.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
 
 registerLocaleData(en);
 
@@ -46,7 +46,7 @@ export function provideConfig() {
     LoginComponent,
     MainLayoutComponent,
     LogoutComponent,
-    UserRegistrationComponent
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,

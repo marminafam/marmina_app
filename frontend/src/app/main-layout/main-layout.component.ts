@@ -1,6 +1,6 @@
 import { MarminaAuthService } from './../auth.service';
 import { AuthService, SocialUser } from 'angularx-social-login';
-import { Component, OnInit, OnChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, Input } from '@angular/core';
 
 @Component({
   selector: 'mf-main-layout',
@@ -8,6 +8,8 @@ import { Component, OnInit, OnChanges } from '@angular/core';
   styleUrls: ['./main-layout.component.scss']
 })
 export class MainLayoutComponent implements OnInit {
+
+  @Input() enableSidebar: boolean = true;
 
   public isAuthenticated: boolean = false;
   public user: SocialUser;

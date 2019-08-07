@@ -16,9 +16,9 @@
 </div>
 
 <!-- Sidebar -->
-<div class="sidebar">
+<div class="sidebar" *ngIf="enableSidebar">
   <ul>
-    <li class="active">Profile</li>
+    <li routerLink="/profile" routerLinkActive="active">Profile</li>
     <li>Item2</li>
     <li>Item3</li>
   </ul>
