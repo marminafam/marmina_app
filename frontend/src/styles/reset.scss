@@ -28,7 +28,7 @@ img {
 
 body {
   color: $dark-gray;
-  background: $light-gray;
+  background: $light-gray !important;
   text-rendering: optimizeLegibility;
 }
 

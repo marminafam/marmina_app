@@ -3,6 +3,7 @@ import unittest
 
 from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
+from flask import make_response
 
 from app.main import create_app, db
 from app.main.model import User, Car, Family, Meeting, MeetingMember, MeetingServiceDay, MeetingAttendance
@@ -21,10 +22,19 @@ with app.app_context():
 
 manager.add_command('db', MigrateCommand)
 
+app.static_folder = "../../../frontend/dist"
+app.static_url_path = "/static/"
+
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def index(path):
+    return make_response(open('../frontend/dist/index.html').read())
+
 
 @manager.command
-def run():
-    app.run()
+def run(port=5000):
+    app.run(port=port)
 
 
 @manager.command
