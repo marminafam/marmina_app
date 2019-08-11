@@ -30,7 +30,16 @@
   }
 
   span {
-    margin-right: 1em;
+    margin-right: -1em;
+    padding: 0 1.5em;
+
+    &:hover,
+    &.active {
+      cursor: pointer;
+      color: black;
+      background: white;
+      border-radius: 10em;
+    }
   }
 }
 
@@ -44,8 +53,12 @@
 .logout {
   background: #efdc00;
   color: #000;
-  padding: 0.1em 2em;
+  padding: 0.1em 1em;
   border-radius: 10px;
+
+  img {
+    height: 1em;
+  }
 }
 
 .sidebar {

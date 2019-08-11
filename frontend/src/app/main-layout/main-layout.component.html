@@ -1,17 +1,17 @@
 <!-- Header -->
 <div class="header">
-    <div routerLink="/" routerLinkActive="active" class="logo">
+    <div routerLink="/profile" routerLinkActive="active" class="logo">
       MarMina Family
     </div>
-    <div *ngIf="isAuthenticated && user" class="user" routerLink="/profile">
-      <span>{{ user.firstName }}</span>
+    <div *ngIf="isAuthenticated && user" class="user">
+      <span routerLink="/profile" routerLinkActive="active">{{ user.firstName }}</span>
       <img [src]="user.photoUrl" alt="user-profile-photo">
     </div>
     <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active" class="login">
       Login
     </a>
     <a *ngIf="isAuthenticated" routerLink="/logout" routerLinkActive="active" class="logout">
-      Logout
+      <img src="assets/logout.svg" alt="">
     </a>
 </div>
 
