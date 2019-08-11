@@ -14,7 +14,7 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config.from_object(configs[config_name])
 
-    api = Api()
+    api = Api(doc='/doc')
     api.add_resource(UserList, '/api/users/')
     api.add_resource(User, '/api/users/<email>/')
 
