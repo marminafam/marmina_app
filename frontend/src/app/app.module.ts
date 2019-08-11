@@ -19,13 +19,16 @@ import {
   NzButtonModule,
   NzSpinModule,
   NzFormModule,
-  NzInputModule
+  NzInputModule,
+  NzSelectModule,
+  NzCheckboxModule
 } from 'ng-zorro-antd';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import en from '@angular/common/locales/en';
 import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserService } from './user.service';
 
 registerLocaleData(en);
 
@@ -59,9 +62,12 @@ export function provideConfig() {
     NzButtonModule,
     NzSpinModule,
     NzFormModule,
-    NzInputModule
+    NzInputModule,
+    NzSelectModule,
+    NzCheckboxModule
   ],
   providers: [
+    UserService,
     MarminaAuthService,
     {
       provide: AuthServiceConfig,
