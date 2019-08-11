@@ -14,14 +14,17 @@ import { LogoutComponent } from './logout/logout.component';
 
 import { SocialLoginModule, AuthServiceConfig } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
-import { NZ_I18N, en_US } from 'ng-zorro-antd';
 import {
+  NZ_I18N,
+  en_US,
   NzButtonModule,
   NzSpinModule,
   NzFormModule,
   NzInputModule,
   NzSelectModule,
-  NzCheckboxModule
+  NzCheckboxModule,
+  NzAlertModule,
+  NzNotificationModule
 } from 'ng-zorro-antd';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -64,7 +67,9 @@ export function provideConfig() {
     NzFormModule,
     NzInputModule,
     NzSelectModule,
-    NzCheckboxModule
+    NzCheckboxModule,
+    NzAlertModule,
+    NzNotificationModule
   ],
   providers: [
     UserService,

@@ -20,6 +20,7 @@ import {
   daysInMonth,
   range
 } from '../app.helpers';
+import { NzNotificationService } from 'ng-zorro-antd';
 
 @Component({
   selector: "mf-user-profile",
@@ -41,7 +42,8 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private authService: MarminaAuthService,
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private notificationService: NzNotificationService
   ) {}
 
   ngOnInit() {
@@ -50,7 +52,7 @@ export class UserProfileComponent implements OnInit {
     const currentYear = new Date().getFullYear();
     this.years = range(currentYear, currentYear - 100, -1).map(item => String(item));
     this.days = range(1, 31, 1).map(item => String(item));
-    this.months = MONTHS;
+    this.months = Object.values(MONTHS);
 
     // validate if the user is logged in
     this.authService.isLoggedIn().subscribe((data) => {
@@ -65,12 +67,12 @@ export class UserProfileComponent implements OnInit {
       name: [null, [Validators.required, Validators.pattern(ARABIC_VALIDATOR)]],
       mobile: [null, [Validators.required, Validators.pattern(MOBILE_NUMBER_VALIDATOR)]],
       gender: ["Female", [Validators.required]],
-      // birthday_month: [null, [Validators.required]],
-      // birthday_day: [null, [Validators.required]],
-      // birthday_year: [null, [Validators.required]],
+      birthday_month: [null, [Validators.required]],
+      birthday_day: [null, [Validators.required]],
+      birthday_year: [null, [Validators.required]],
       college: [null, [Validators.required]],
       university: [null, [Validators.required]],
-      graduation_year: [null, [Validators.required]],
+      graduation_year: [null, [Validators.required, Validators.max(currentYear + 5), Validators.min(1950)]],
       facebook_url: [null],
 
       // boolean fields
@@ -90,7 +92,15 @@ export class UserProfileComponent implements OnInit {
       (data: any) => {
         console.log("User found .. populate the form with the data .. :)",);
         this.showForm = true;
-        this.profileForm.setValue(data);
+
+        // add the birthday info
+        const birthday: Date = new Date(data['date_of_birth']);
+        const monthId  = birthday.getMonth().toString();
+        data['birthday_month'] = MONTHS[monthId];
+        data['birthday_year'] = birthday.getFullYear().toString();
+        data['birthday_day'] = birthday.getDate().toString();
+
+        this.profileForm.patchValue(data);
       },
       (err: HttpErrorResponse) => {
         console.log("An error occured.", err);
@@ -116,17 +126,16 @@ export class UserProfileComponent implements OnInit {
     const birthdayYear = this.profileForm.value.birthday_year;
     const birthdayDay = this.profileForm.value.birthday_day;
 
-    const birthday = new Date(`${birthdayMonth} ${birthdayDay} ${birthdayYear}`);
+    const birthday = new Date(`${birthdayMonth} ${birthdayDay} ${birthdayYear}`).toLocaleDateString();
     if (!birthday) {
       console.log("Invalid birthday");
     }
     this.profileForm.value['date_of_birth'] = birthday;
-    console.log("BD", birthday);
-
 
     this.userService.updateUserInfo(this.user.email, this.profileForm.value).subscribe(
       (res: any) => {
         console.log("Updated ...", res);
+        this.notificationService.success("Update Successful!", "Your profile was updated successfully!")
       },
       (err: any) => {
         console.log("Error happened while updating the user info", err);
