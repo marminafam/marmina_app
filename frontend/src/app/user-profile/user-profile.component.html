@@ -1,5 +1,97 @@
 <mf-main-layout></mf-main-layout>
 
 <div class="wrapper">
-  User detail
+
+  <div class="profile-wrapper">
+
+    <h2>Edit Your Personal Information</h2>
+
+    <div class="profile-form">
+
+      <img [src]="user.photoUrl" alt="user-profile-photo">
+
+      <form *ngIf="showForm" nz-form [formGroup]="profileForm" (ngSubmit)="submit()">
+        <nz-form-label nzRequired [nzNoColon]="true">Name</nz-form-label>
+        <nz-form-item>
+          <nz-form-control [nzLg]="4" [nzMd]="8" [nzSm]="24" [nzSpan]="4" nzErrorTip="Your name must be in Arabic!">
+            <input type="text" nz-input formControlName="name" placeholder="Name" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-label nzRequired [nzNoColon]="true">Mobile</nz-form-label>
+
+        <nz-form-item>
+          <nz-form-control [nzSpan]="3" nzErrorTip="Please input a valid mobile number!">
+            <input type="text" nz-input formControlName="mobile" placeholder="Mobile" />
+          </nz-form-control>
+
+          <nz-form-control [nzSpan]="2">
+            <label nz-checkbox formControlName="has_whatsapp">Whatsapp?</label>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-label nzRequired [nzNoColon]="true">Gender</nz-form-label>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="2">
+            <nz-select nzShowSearch formControlName="gender">
+              <nz-option nzValue="Male" nzLabel="Male"></nz-option>
+              <nz-option nzValue="Female" nzLabel="Female"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item>
+<!--
+        <nz-form-label nzRequired [nzNoColon]="true">Birthday</nz-form-label>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="2">
+            <nz-select nzShowSearch formControlName="birthday_month">
+              <nz-option *ngFor="let month of months" [nzValue]="month" [nzLabel]="month"></nz-option>
+            </nz-select>
+          </nz-form-control>
+          <nz-form-control [nzSpan]="1">
+            <nz-select nzShowSearch formControlName="birthday_day">
+              <nz-option *ngFor="let day of days" [nzValue]="day" [nzLabel]="day"></nz-option>
+            </nz-select>
+          </nz-form-control>
+          <nz-form-control [nzSpan]="2">
+            <nz-select nzShowSearch formControlName="birthday_year">
+              <nz-option *ngFor="let year of years" [nzValue]="year" [nzLabel]="year"></nz-option>
+            </nz-select>
+          </nz-form-control>
+        </nz-form-item> -->
+
+        <nz-form-label nzRequired [nzNoColon]="true">Education</nz-form-label>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="2">
+            <input type="text" nz-input formControlName="college" placeholder="College" />
+          </nz-form-control>
+          <nz-form-control [nzSpan]="2">
+            <input type="text" nz-input formControlName="university" placeholder="University" />
+          </nz-form-control>
+          <nz-form-control [nzSpan]="2">
+            <input type="number" nz-input formControlName="graduation_year" placeholder="Graduation Year" />
+          </nz-form-control>
+          <nz-form-control [nzSpan]="3">
+            <label nz-checkbox formControlName="is_student">Current Student?</label>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-label [nzNoColon]="true">Facebook Account</nz-form-label>
+        <nz-form-item>
+          <nz-form-control [nzSpan]="4" nzErrorTip="Please enter a valid facebook url!">
+            <input type="text" nz-input formControlName="facebook_url" placeholder="Facebook Account URL" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-control [nzSpan]="12">
+            <button nz-button class="login-form-button" [nzType]="'primary'">
+              Save Profile
+            </button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+
+  </div>
+
 </div>

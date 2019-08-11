@@ -3,9 +3,9 @@
     <div routerLink="/" routerLinkActive="active" class="logo">
       MarMina Family
     </div>
-    <div *ngIf="isAuthenticated && user" class="user">
+    <div *ngIf="isAuthenticated && user" class="user" routerLink="/profile">
       <span>{{ user.firstName }}</span>
-      <img [src]="user.photoUrl" alt="">
+      <img [src]="user.photoUrl" alt="user-profile-photo">
     </div>
     <a *ngIf="!isAuthenticated" routerLink="/login" routerLinkActive="active" class="login">
       Login
@@ -16,10 +16,10 @@
 </div>
 
 <!-- Sidebar -->
-<div class="sidebar" *ngIf="enableSidebar">
+<!-- <div class="sidebar" *ngIf="enableSidebar">
   <ul>
     <li routerLink="/profile" routerLinkActive="active">Profile</li>
     <li>Item2</li>
     <li>Item3</li>
   </ul>
-</div>
+</div> -->

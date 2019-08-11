@@ -5,6 +5,7 @@ import { takeWhile } from 'rxjs/operators';
 import { SocialUser } from 'angularx-social-login';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { deprecate } from 'util';
+import { UserService } from '../user.service';
 @Component({
   selector: 'mf-login',
   templateUrl: './login.component.html',
@@ -16,7 +17,8 @@ export class LoginComponent implements OnDestroy, OnInit {
   validateForm: FormGroup;
 
   constructor(
-    private marminaAuthService: MarminaAuthService,
+    private authService: MarminaAuthService,
+    private userService: UserService,
     private router: Router,
     private fb: FormBuilder
   ) { }
@@ -30,9 +32,20 @@ export class LoginComponent implements OnDestroy, OnInit {
   }
 
   loginWithGoogle(): void {
-    this.marminaAuthService.login().subscribe((user: SocialUser) => {
-      this.router.navigate(['/']);
-    });
+    this.authService.login().subscribe(
+      (user: SocialUser) => {
+
+        this.userService.registerUser(user.email).subscribe(
+          (msg: any) => {
+            console.log("Registered success", msg);
+            this.router.navigate(['/profile']);
+          }
+        );
+      },
+      (err) => {
+        alert("Error happened while trying to login.");
+      }
+    );
   }
 
   loginWithPassword(): void {

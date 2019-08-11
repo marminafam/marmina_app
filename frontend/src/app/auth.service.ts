@@ -39,6 +39,11 @@ export class MarminaAuthService {
     return user;
   }
 
+  getUserEmail(): string {
+    const session: SocialUser = this.getUserSession();
+    return session ? session.email: null;
+  }
+
   saveUserSession(user: SocialUser): void {
     if (!user) {
       return;
@@ -49,4 +54,5 @@ export class MarminaAuthService {
   removeUserSession(): void {
     localStorage.removeItem("user");
   }
+
 }
