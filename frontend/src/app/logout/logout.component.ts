@@ -21,7 +21,7 @@ export class LogoutComponent implements OnInit {
   ngOnInit(): void {
     this.marminaAuthService.logout().subscribe(() => {
       setTimeout(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/login']);
       }, 500);
     })
   }

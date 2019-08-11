@@ -34,10 +34,8 @@ export class LoginComponent implements OnDestroy, OnInit {
   loginWithGoogle(): void {
     this.authService.login().subscribe(
       (user: SocialUser) => {
-
         this.userService.registerUser(user.email).subscribe(
           (msg: any) => {
-            console.log("Registered success", msg);
             this.router.navigate(['/profile']);
           }
         );

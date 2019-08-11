@@ -55,10 +55,19 @@ export class UserProfileComponent implements OnInit {
     this.months = Object.values(MONTHS);
 
     // validate if the user is logged in
-    this.authService.isLoggedIn().subscribe((data) => {
-      this.isAuthenticated = data.isAuthenticated;
-      this.user = data.user;
-    });
+    this.authService.isLoggedIn().subscribe(
+      (data) => {
+        this.isAuthenticated = data.isAuthenticated;
+
+        if (!this.isAuthenticated) {
+          this.router.navigate(["/login"])
+        } else {
+          this.user = data.user;
+        }
+      }
+    );
+
+
 
     // initialize the user profile form
     this.profileForm = this.fb.group({
@@ -80,18 +89,18 @@ export class UserProfileComponent implements OnInit {
       is_student: [false, [Validators.required]],
 
       // hidden fields
-      email: [this.user.email],
-      image: [this.user.photoUrl],
+      email: [this.user ? this.user.email: null],
+      image: [this.user ? this.user.photoUrl: null],
       date_of_birth: [null],
       public_id: [null],
       english_name: [null]
     });
 
+
     // populate the form with the data from the API
     this.userService.getUserInfo(this.user.email).subscribe(
       (data: any) => {
         console.log("User found .. populate the form with the data .. :)",);
-        this.showForm = true;
 
         // add the birthday info
         const birthday: Date = new Date(data['date_of_birth']);
@@ -100,6 +109,7 @@ export class UserProfileComponent implements OnInit {
         data['birthday_year'] = birthday.getFullYear().toString();
         data['birthday_day'] = birthday.getDate().toString();
 
+        this.showForm = true;
         this.profileForm.patchValue(data);
       },
       (err: HttpErrorResponse) => {

@@ -12,7 +12,7 @@ def register_new_user(data):
 
     user = User.query.filter_by(email=data['email']).first()
     if user:
-        return "User already exists with the specified email address.", 409
+        return "User already exists with the specified email address.", 200
 
     new_user = User(
         public_id=str(uuid.uuid4()),
