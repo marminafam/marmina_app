@@ -6,22 +6,20 @@ from app.main.util.Database import save_and_commit
 from app.main.util.Database import db
 
 
-def create_new_user(data):
-    if not data:
-        return "You must provide data in the request body.", 500
-    if 'email' not in data:
+def register_new_user(data):
+    if not data or 'email' not in data:
         return "You must provide an email address in the request body.", 500
 
     user = User.query.filter_by(email=data['email']).first()
     if user:
-        return "User already exists.", 409
+        return "User already exists with the specified email address.", 409
 
     new_user = User(
         public_id=str(uuid.uuid4()),
-        **data
+        email=data['email']
     )
     save_and_commit(db, new_user)
-    return "User has been added successfully!", 201
+    return "User has been registered successfully!", 201
 
 
 def get_all_users():
@@ -39,5 +37,22 @@ def get_user_by_email(user_email):
     return user.serialize() if user else None
 
 
-def get_user_form_fields():
-    return User.get_fields()
+def update_user_details(user_email, data):
+    if not data:
+        return "You must provide the fields for the user.", 500
+
+    user = db.session.query(User).filter_by(email=user_email).one()
+    user_dict = user.serialize()
+
+    modified_data = {}
+    for field in data:
+        if field in user_dict:
+            modified_data[field] = data[field]
+
+    db.session.query(User)\
+        .filter_by(email=user_email)\
+        .update(modified_data)
+
+    save_and_commit(db, user)
+
+    return "User data has been updated successfully!", 200

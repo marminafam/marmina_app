@@ -1,7 +1,7 @@
 from flask import request
 from flask_restplus import Resource
 
-from ..service.UserService import get_all_users, create_new_user, get_user_by_email, get_user_form_fields
+from ..service.UserService import get_all_users, register_new_user, get_user_by_email, update_user_details
 
 
 class UserList(Resource):
@@ -13,7 +13,8 @@ class UserList(Resource):
     def post(self):
         """Creates a new user"""
         data = request.json
-        return create_new_user(data=data)
+        msg, status = register_new_user(data=data)
+        return msg, status
 
 
 class User(Resource):
@@ -24,9 +25,12 @@ class User(Resource):
             return "User doesn\'t exist.", 404
         return user
 
+    def put(self, email):
+        """Update the user details"""
+        user = get_user_by_email(email)
+        if not user:
+            return "User doesn\'t exist.", 404
 
-class UserFormFields(Resource):
-    def get(self):
-        """Get the fields needed for creating the user profile form"""
-        fields = get_user_form_fields()
-        return fields
+        data = request.json
+        msg, status = update_user_details(email, data)
+        return msg, status

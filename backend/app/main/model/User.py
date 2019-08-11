@@ -10,13 +10,14 @@ class User(db.Model):
     public_id = db.Column(db.String(500))
     name = db.Column(db.String(100))
     english_name = db.Column(db.String(100))
-    mobile = db.Column(db.Integer)
+    mobile = db.Column(db.String(15))
     has_whatsapp = db.Column(db.Boolean)
     gender = db.Column(db.String(20))
     date_of_birth = db.Column(db.String(100))
     is_student = db.Column(db.Boolean)
     college = db.Column(db.String(100))
     university = db.Column(db.String(100))
+    graduation_year = db.Column(db.String(10))
     is_servant = db.Column(db.Boolean)
     email = db.Column(db.String(100))
     facebook_url = db.Column(db.String(500))
@@ -35,9 +36,3 @@ class User(db.Model):
             for (key, value) in self.__dict__.items()
             if key not in self._excluded_keys
         )
-
-    @classmethod
-    def get_fields(self):
-        return ["public_id", "name", "english_name", "mobile",
-                "has_whatsapp", "gender", "date_of_birth", "is_student", "college",
-                "university", "email", "facebook_url", "image"]
