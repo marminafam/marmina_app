@@ -1,9 +1,9 @@
 import uuid
 
-from app.main.model.User import User
-from app.main.util.Database import save_and_commit
+from backend.app.main.model.User import User
+from backend.app.main.util.Database import save_and_commit
 
-from app.main.util.Database import db
+from backend.app.main.util.Database import db
 
 
 def register_new_user(data):

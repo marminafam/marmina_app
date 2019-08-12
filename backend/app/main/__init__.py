@@ -5,7 +5,7 @@ from flask_restplus import Api
 from .util.Database import db
 from .config import configs
 
-from app.main.controller.UserController import UserList, User
+from backend.app.main.controller.UserController import UserList, User
 
 flask_bcrypt = Bcrypt()
 

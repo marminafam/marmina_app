@@ -5,8 +5,8 @@ from flask_migrate import Migrate, MigrateCommand
 from flask_script import Manager
 from flask import make_response
 
-from app.main import create_app, db
-from app.main.model import User, Car, Family, Meeting, MeetingMember, MeetingServiceDay, MeetingAttendance
+from backend.app.main import create_app, db
+from backend.app.main.model import User, Car, Family, Meeting, MeetingMember, MeetingServiceDay, MeetingAttendance
 
 app = create_app(os.getenv("MARMINA_ENV") or "dev")
 app.app_context().push()
@@ -22,17 +22,19 @@ with app.app_context():
 
 manager.add_command('db', MigrateCommand)
 
-app.static_folder = "../../../frontend/dist"
+static_folder_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "build")
+app.static_folder = static_folder_root
+
 app.static_url_path = "/static/"
 
 
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def index(path):
-    index_file = '../frontend/dist/index.html'
+    index_file = 'build/index.html'
     if not os.path.exists(index_file):
         return "Failed to render Angular app."
-    return make_response(open(index_file).read())
+    return make_response(open('build/index.html').read())
 
 
 @manager.command

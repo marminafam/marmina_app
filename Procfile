@@ -1,1 +1,1 @@
-web: cd frontend; npm install && npm run build-prod; cd ../backend; gunicorn manage:app
+web: npm install && npm run build-prod && gunicorn manage:app
