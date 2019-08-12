@@ -12,7 +12,7 @@ app = create_app(os.getenv("MARMINA_ENV") or "dev")
 app.app_context().push()
 
 manager = Manager(app)
-migrate = Migrate(app, db)
+migrate = Migrate(app, db, directory="backend/migrations")
 
 with app.app_context():
     if db.engine.url.drivername == 'sqlite':
@@ -31,7 +31,7 @@ app.url_map.strict_slashes = False
 
 @manager.command
 def run(port=5000):
-    app.run(port=port)
+    app.run(port=port, debug=True)
 
 
 @manager.command
