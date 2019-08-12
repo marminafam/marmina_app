@@ -24,7 +24,11 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "frontend/src/favicon.ico",
-              "frontend/src/assets"
+              {
+                "glob": "**/*",
+                "input": "frontend/src/static",
+                "output": "/"
+              }
             ],
             "styles": [
               "frontend/src/theme.less",
@@ -86,7 +90,7 @@
             "karmaConfig": "karma.conf.js",
             "assets": [
               "frontend/src/favicon.ico",
-              "frontend/src/assets"
+              "frontend/src/static"
             ],
             "styles": [
               "frontend/src/styles/main.scss"

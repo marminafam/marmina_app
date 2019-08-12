@@ -38,7 +38,7 @@ def index(path):
 
 
 @manager.command
-def run(port=4200):
+def run(port=5000):
     app.run(port=port)
 
 
