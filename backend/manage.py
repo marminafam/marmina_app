@@ -29,7 +29,10 @@ app.static_url_path = "/static/"
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def index(path):
-    return make_response(open('../frontend/dist/index.html').read())
+    index_file = '../frontend/dist/index.html'
+    if not os.path.exists(index_file):
+        return "Failed to render Angular app."
+    return make_response(open('').read())
 
 
 @manager.command
