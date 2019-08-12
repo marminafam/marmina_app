@@ -32,7 +32,7 @@ def index(path):
     index_file = '../frontend/dist/index.html'
     if not os.path.exists(index_file):
         return "Failed to render Angular app."
-    return make_response(open('').read())
+    return make_response(open(index_file).read())
 
 
 @manager.command
