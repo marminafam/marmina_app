@@ -26,15 +26,7 @@ static_folder_root = os.path.join(os.path.dirname(os.path.abspath(__file__)), "b
 app.static_folder = static_folder_root
 
 app.static_url_path = "/static/"
-
-
-@app.route('/', defaults={'path': ''})
-@app.route('/<path:path>')
-def index(path):
-    index_file = 'build/index.html'
-    if not os.path.exists(index_file):
-        return "Failed to render Angular app."
-    return make_response(open('build/index.html').read())
+app.url_map.strict_slashes = False
 
 
 @manager.command
