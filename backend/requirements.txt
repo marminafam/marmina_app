@@ -25,3 +25,4 @@ python-editor==1.0.4
 pytz==2019.1
 SQLAlchemy==1.2.12
 Werkzeug==0.14.1
+gunicorn==19.9.0

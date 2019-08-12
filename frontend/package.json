@@ -5,6 +5,8 @@
     "ng": "ng",
     "start": "ng serve --aot",
     "build": "ng build",
+    "build-dev": "ng build --watch --deploy-url /static/",
+    "build-prod": "ng build --prod --deploy-url /static/",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
