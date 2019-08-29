@@ -7,4 +7,10 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.widget.SearchView"
         android:title="search" />
+    <item android:id="@+id/import_from_google_sheet"
+        android:title="Import Names From google" >
+    </item>
+    <item android:id="@+id/export_to_google_sheet"
+        android:title="Export Attendance to google" >
+    </item>
 </menu>

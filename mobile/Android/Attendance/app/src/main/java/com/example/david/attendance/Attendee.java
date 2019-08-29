@@ -1,9 +1,20 @@
 package com.example.david.attendance;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 class Attendee implements Comparable<Attendee> {
     private String name;
+    private String phone;
+
+    public Attendee(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     private boolean attendeeToday = false;
 
 

@@ -4,8 +4,8 @@ package com.example.david.attendance;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +15,7 @@ import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -30,11 +31,19 @@ public class AttendeeAdapter extends ArrayAdapter<Attendee> implements Filterabl
 
     public AttendeeAdapter(@NonNull Context context, int resource, @NonNull List<Attendee> objects) {
         super(context, resource, objects);
-        Collections.sort(objects);
         attendees = objects;
         filteredAttendees = objects;
         this.context = context;
     }
+
+
+    public void setAttendees(List<Attendee> attendees) {
+        this.attendees = attendees;
+        filteredAttendees = attendees;
+        notifyDataSetChanged();
+
+    }
+
 
     @NonNull
     @Override
@@ -75,6 +84,13 @@ public class AttendeeAdapter extends ArrayAdapter<Attendee> implements Filterabl
         return filteredAttendees.size();
     }
 
+    @Override
+    public void addAll(@NonNull Collection<? extends Attendee> collection) {
+        attendees.addAll(collection);
+        Collections.sort(attendees);
+        notifyDataSetChanged();
+    }
+
     @Nullable
     @Override
     public Attendee getItem(int position) {
@@ -93,6 +109,10 @@ public class AttendeeAdapter extends ArrayAdapter<Attendee> implements Filterabl
         }
 
         return attendeeFilter;
+    }
+
+    public List<Attendee> getAttendeesList() {
+        return attendees;
     }
 
     private class AttendeeFilter extends Filter {
